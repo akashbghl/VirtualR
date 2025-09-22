@@ -2,6 +2,7 @@ import { useState } from 'react'
 import logo from '../assets/logo.png'
 import {navItems} from '../constants'
 import { Menu, X } from 'lucide-react';
+import {motion} from 'motion/react'
 const Navbar = () => {
   const [mobileMenuOpen,setMobileMenuOpen] = useState(false);
   const toggleNavbar = ()=>{
@@ -44,7 +45,10 @@ const Navbar = () => {
           </div>
         </div>
         {mobileMenuOpen && (
-          <div className='fixed right-0 z-20 bg-neutral-900 w-1/2 p-12 flex flex-col justify-center items-center lg:hidden'>
+          <motion.div 
+          initial={{right:'-100px'}}
+          animate={{right:'0px'}}
+          className='fixed right-0 z-20 bg-neutral-900 w-1/2 p-12 flex flex-col justify-center items-center lg:hidden'>
             <ul>
               {navItems.map((item,index)=>(
                 <li key={index} className='py-4'>
@@ -56,7 +60,7 @@ const Navbar = () => {
               <a href="#" className='py-2 px-3 border border-neutral-700 rounded-md'>Sign In</a>
             <a href="#" className='text-xs bg-gradient-to-r from-orange-500 to-red-800 py-2 px-3 border border-neutral-500 rounded-md '>Create an account</a>
             </div>
-          </div>
+          </motion.div>
         )}
       </div>
     </div>
